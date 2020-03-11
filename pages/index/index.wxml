@@ -1,2 +1,35 @@
-<!--pages/index/index.wxml-->
-<text>pages/index/index.wxml</text>
+<view class="index">
+  <SearchInput></SearchInput>
+    
+  <view class="index_swiper">
+    <swiper autoplay circular="true" indicator-dots="true"> 
+      <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+        <image mode="widthFix" src="{{item.image_src}}"></image>
+      </swiper-item>
+    </swiper>
+  </view>
+    
+  <view class="index_nav">
+    <navigator wx:for="{{navList}}" wx:key="name">
+      <image mode="widthFix" src="{{item.image_src}}"></image>
+    </navigator>
+  </view>
+    
+  <view class="index_floor">
+    <view class="floor_item" wx:for="{{floorList}}" wx:for-item="item1" wx:for-index="index1" wx:key="item1">
+      <view class="item_title">
+          <image mode="widthFix" src="{{item1.floor_title.image_src}}"></image>
+      </view>
+      <view class="item_content">
+        <navigator class="item_content1" wx:for="{{item1.product_list}}" wx:for-item="item2" wx:for-index="index2" wx:key="item2">
+          <image mode="{{index2===0?'widthFix':'scaleToFill'}}" src="{{item2.image_src}}"></image>
+        </navigator>
+        
+      </view>  
+    </view>
+      
+  </view>
+    
+
+</view>
+  

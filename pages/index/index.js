@@ -1,4 +1,5 @@
-// pages/index/index.js
+
+import {request} from '../../request/index'
 Page({
 
   /**
@@ -20,36 +21,33 @@ Page({
   },
   // 获取轮播图数据
   getSwiperList() {
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata',
-      success: (result) => {
-        this.setData({
-          swiperList:result.data.message
-        })
-      }
-    });
+    request({
+      url:'/home/swiperdata',
+    }).then(result => {
+      this.setData({
+        swiperList:result.data.message
+      })
+    })
   },
   // 获取导航栏数据
   getNavList() {
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/catitems',
-      success: (result) => {
-        this.setData({
-          navList:result.data.message
-        })
-      }
-    });
+    request({
+      url:'/home/catitems',
+    }).then(result => {
+      this.setData({
+        navList:result.data.message
+      })
+    })
   },
   // 获取楼层数据
   getFloorList() {
-    wx.request({
-      url: 'https://api-hmugo-web.itheima.net/api/public/v1/home/floordata',
-      success: (result) => {
-        this.setData({
-          floorList:result.data.message
-        })
-      }
-    });
+    request({
+      url:'/home/floordata',
+    }).then(result => {
+      this.setData({
+        floorList:result.data.message
+      })
+    })
   }
 
 })

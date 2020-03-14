@@ -1,0 +1,7 @@
+
+<view class="myTabbar">
+  <view class="tab_item {{currentIndex === index ? 'active': ''}}" wx:for="{{titleList}}" wx:key="id" bindtap="handleTap" data-index="{{index}}">
+    {{item.text}}
+  </view>
+  <slot></slot>
+</view>

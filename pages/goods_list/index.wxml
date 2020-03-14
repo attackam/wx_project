@@ -1,2 +1,26 @@
-<!--pages/goods_list/index.wxml-->
-<text>pages/goods_list/index.wxml</text>
+<view class="goods_list">
+  <SearchInput></SearchInput>
+  <MyTabbar titleList="{{titleList}}" currentIndex="{{currentIndex}}" bindchangeCurrentIndex="changeCurrentIndex"></MyTabbar>
+  <view wx:if="{{currentIndex === 0}}">
+    <view class="goods_content">
+      <navigator wx:for="{{goodsList}}" wx:key="goods_id">
+        <view class="item_left">
+          <image src="{{item.goods_small_logo||'http://img2.imgtn.bdimg.com/it/u=2889071587,4234702433&fm=26&gp=0.jpg'}}" mode="widthFix"/>    
+        </view>
+        <view class="item_right">
+          <view class="item_title">
+            {{item.goods_name}}
+          </view>
+          <view class="item_price">
+            ￥{{item.goods_price}}
+          </view>
+        </view>
+      </navigator>
+      <view class="no_more" wx:if="{{noMore}}">
+        -----没有数据了-----
+      </view>
+    </view> 
+  </view>
+  <view wx:elif="{{currentIndex === 1}}">2</view>
+  <view wx:else>3</view>
+</view>

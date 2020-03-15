@@ -3,7 +3,7 @@
   <MyTabbar titleList="{{titleList}}" currentIndex="{{currentIndex}}" bindchangeCurrentIndex="changeCurrentIndex"></MyTabbar>
   <view wx:if="{{currentIndex === 0}}">
     <view class="goods_content">
-      <navigator wx:for="{{goodsList}}" wx:key="goods_id">
+      <navigator wx:for="{{goodsList}}" wx:key="goods_id" url="/pages/goods_detail/index?goods_id={{item.goods_id}}">
         <view class="item_left">
           <image src="{{item.goods_small_logo||'http://img2.imgtn.bdimg.com/it/u=2889071587,4234702433&fm=26&gp=0.jpg'}}" mode="widthFix"/>    
         </view>

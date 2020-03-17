@@ -1,4 +1,5 @@
 import {request} from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -19,19 +20,14 @@ Page({
     })
     this.getDetailData()
   },
-  getDetailData() {
-    request({
-      url:'/goods/detail',
-      data:{
-        goods_id:this.data.goods_id
-      }
-    }).then(res => {
-      this.setData({
-        goodsData:res.data.message
-      })
-      
+  // 获取数据
+  async getDetailData() {
+    let res = await request({ url:'/goods/detail', data:{goods_id:this.data.goods_id}})
+    this.setData({
+      goodsData:res
     })
   },
+  // 点击图片放大功能
   handleTap(event) {
     const urls = this.data.goodsData.pics.map(v => v.pics_mid_url)
     const {current} = event.currentTarget.dataset
@@ -40,6 +36,7 @@ Page({
       urls
     }); 
   },
+  // 加入购物车功能
   handleAddGoods() {
     
     let cartData = wx.getStorageSync('cart') || [];

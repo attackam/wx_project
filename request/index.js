@@ -14,7 +14,12 @@ export const request = (params) => {
       ...params,
       url:baseUrl + params.url,
       success: (result) => {
-        resolve(result)
+        if(result.data.meta && result.data.meta.status===200) {
+          resolve(result.data.message)
+        } else {
+          reject(err)
+        }
+        
       },
       fail: (err) => {
         reject(err)

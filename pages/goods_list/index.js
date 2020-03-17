@@ -1,4 +1,5 @@
 import {request} from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -26,20 +27,20 @@ Page({
       currentIndex:event.detail
     })
   },
-  getGoodsList(){
-    request({
+  async getGoodsList(){
+    let res = await request({
       url:'/goods/search',
       data:this.requestParams
-    }).then(res => {
-      const newGoodsList = res.data.message.goods
-      const oddGoodsList = this.data.goodsList
-      const {total} = res.data.message
-      this.totalNum = Math.ceil(total / this.requestParams.pagesize)
-      this.setData({
-        goodsList:[...oddGoodsList,...newGoodsList]
-      })
-      wx.stopPullDownRefresh()
     })
+    const newGoodsList = res.goods
+    const oddGoodsList = this.data.goodsList
+    const {total} = res
+    this.totalNum = Math.ceil(total / this.requestParams.pagesize)
+    this.setData({
+      goodsList:[...oddGoodsList,...newGoodsList]
+    })
+    wx.stopPullDownRefresh()
+    
   },
   /**
    * 生命周期函数--监听页面加载

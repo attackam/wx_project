@@ -1,4 +1,5 @@
 import {request} from '../../request/index'
+import regeneratorRuntime from '../../lib/runtime/runtime';
 Page({
 
   /**
@@ -21,17 +22,14 @@ Page({
     })
   },
   // 获取页面数据
-  getCates() {
-    request({
-      url:'/categories'
-    }).then(res => {
-      this.resultList = res.data.message;
-      wx.setStorageSync('hmyg', {
-        data:res.data.message,
-        time:Date.now()
-      });
-      this.uploadData()
-    })
+  async getCates() {
+    let res = await request({url:'/categories'})
+    this.resultList = res;
+    wx.setStorageSync('hmyg', {
+      data:res,
+      time:Date.now()
+    });
+    this.uploadData()
   },
   // 更新页面数据 
   uploadData(){

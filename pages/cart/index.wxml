@@ -1,2 +1,81 @@
-<!--pages/cart/index.wxml-->
-<text>pages/cart/index.wxml</text>
+<view class="cart" wx:if="{{goodsList.length !== 0}}">
+  <view class="address_button" wx:if="{{!userInfo}}">
+      <button bindtap="handleAddress">+ 添加收获地址</button>
+  </view>
+  
+  <view wx:else class="address">
+    <view class="address_title">
+      <view class="userName">
+        收货人：{{userInfo.userName}}
+      </view>
+      <view class="phone">
+        {{userInfo.telNumber}}  
+      </view>
+    </view>
+    <view class="address_content">
+      {{userInfo.detailAddress}}  
+    </view>
+  </view>
+
+  <view class="shopping_car">
+    <view class="shopping_title">
+      购物车
+    </view>
+    <view class="shopping_content">
+      <view class="shopping_item" wx:for="{{goodsList}}" wx:key="goods_id">
+        <view class="checkbox_btn">
+          <checkbox-group bindchange="handleCheckedChange" data-index="{{index}}">
+            <checkbox checked="{{item.checked}}"></checkbox>
+          </checkbox-group>
+        </view>
+        <view class="image">
+          <image src="{{item.goods_image}}" mode="widthFix" />
+        </view>
+        <view class="intro">
+          <view class="item_name">
+            {{item.goods_name}}
+          </view>
+          <view class="item_content">
+              <view class="item_price">￥ {{item.goods_price}}</view>
+              <view>
+                <text class="btn" bindtap="changeGoodsNumber" data-index="{{index}}" data-type="{{-1}}">-</text>
+                <text class="number">{{item.goods_number}}</text>
+                <text class="btn" bindtap="changeGoodsNumber" data-index="{{index}}" data-type="{{1}}">+</text>
+              </view>
+          </view>
+          
+        </view>
+          
+        </view>
+    </view>
+    
+  </view>
+
+
+  <view class="btm_tools">
+    <view class="select">
+      <checkbox-group>
+        <checkbox checked="{{allChecked}}">
+            全选
+        </checkbox>
+      </checkbox-group>
+    </view>
+    <view class="totle_price">
+      <view class="totle_view">
+        合计：<text class="money">￥ {{totalPrice}}</text>
+      </view>
+      <view class="yunfei">
+        包含运费
+      </view>
+        
+    </view>
+    <view class="pay" bindtap="goPay">
+      结算({{totalNumber}})
+    </view>
+  </view>
+</view>
+<view wx:else>
+  <image src="http://photoshow.108sq.cn/user/2018/1111/0203267295361058253396280.jpg" mode="widthFix" />
+    
+</view>
+  

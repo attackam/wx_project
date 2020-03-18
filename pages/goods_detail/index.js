@@ -52,7 +52,8 @@ Page({
         goods_name,
         goods_price,
         goods_number:1,
-        goods_image:goods_small_logo
+        goods_image:goods_small_logo,
+        checked:true
       })
     } else {
       cartData[index].goods_number++

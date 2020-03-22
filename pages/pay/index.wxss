@@ -1,1 +1,115 @@
-/* pages/pay/index.wxss */
+view.cart {
+  margin-bottom: 90rpx;
+}
+view.cart .address_button {
+  margin: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+view.cart .address_button button {
+  font-weight: normal;
+  border: 1px solid #eee;
+}
+view.cart view.address {
+  padding: 40rpx;
+  font-size: 26rpx;
+  color: #000;
+}
+view.cart view.address view.address_title {
+  display: flex;
+  justify-content: space-between;
+}
+view.cart view.shopping_car view.shopping_title {
+  padding: 20rpx;
+  font-size: 48rpx;
+  color: #000;
+  border-top: 1px solid red;
+  border-bottom: 1px solid red;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.checkbox_btn {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.image {
+  flex: 3;
+  display: flex;
+  padding: 20rpx;
+  justify-content: center;
+  align-items: center;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro {
+  flex: 6;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro view.item_name {
+  margin: 20rpx 0;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro view.item_content {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20rpx;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro view.item_content view.item_price {
+  color: var(--themeColor);
+  font-size: 32rpx;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro view.item_content view text.btn {
+  display: inline-block;
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  line-height: 30rpx;
+  border: 1px solid #ccc;
+}
+view.cart view.shopping_car view.shopping_content view.shopping_item view.intro view.item_content view text.number {
+  margin: 0 20rpx;
+}
+view.cart view.btm_tools {
+  width: 100vw;
+  height: 90rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+}
+view.cart view.btm_tools view.select {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+view.cart view.btm_tools view.totle_price {
+  flex: 6;
+  text-align: right;
+  padding-right: 20rpx;
+}
+view.cart view.btm_tools view.totle_price view.totle_view {
+  color: #000;
+}
+view.cart view.btm_tools view.totle_price view.totle_view .money {
+  color: var(--themeColor);
+}
+view.cart view.btm_tools view.totle_price view.yunfei {
+  font-size: 20rpx;
+}
+view.cart view.btm_tools view.pay {
+  flex: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--themeColor);
+  color: #fff;
+}

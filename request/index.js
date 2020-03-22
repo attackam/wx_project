@@ -17,7 +17,9 @@ export const request = (params) => {
         if(result.data.meta && result.data.meta.status===200) {
           resolve(result.data.message)
         } else {
-          reject(err)
+          // reject(err)
+          console.log(result,666);
+          
         }
         
       },
@@ -61,6 +63,19 @@ export const getSetting = ()=> {
 export const chooseAddress = ()=> {
   return new Promise((resolve, reject) => {
     wx.chooseAddress({
+      success: (result) => {
+        resolve(result)
+      },
+      fail: (err) => {
+        reject(err)
+      }
+      });
+  }) 
+}
+
+export const login = ()=> {
+  return new Promise((resolve, reject) => {
+    wx.login({
       success: (result) => {
         resolve(result)
       },

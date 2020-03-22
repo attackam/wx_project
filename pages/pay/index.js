@@ -1,66 +1,64 @@
-// pages/pay/index.js
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import { openSetting,getSetting,chooseAddress,showModal,showToast,request } from '../../request/index'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo:{},
+    goodsList:[],
+    totalPrice:0,
+    totalNumber:0
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let userInfo = wx.getStorageSync('userInfo');
+    this.setData({ userInfo })
+    this.countTotalPrice()
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
+  handleAddress() {
+    this.getUserAddress()
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
+  async getUserAddress() {
+    try {
+      let result1 = await getSetting()
+      let auth =  result1.authSetting["scope.address"]
+      if (auth === false) {
+        await openSetting()
+      }
+      let result2 = await chooseAddress()
+      result2.detailAddress = result2.provinceName + result2.cityName + result2.countyName + result2.detailInfo
+      wx.setStorageSync('userInfo', result2);
+    } catch(error) {
+      console.log(error);
+    }
+    
   },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+  countTotalPrice() {
+    let goodsList = wx.getStorageSync('cart') || [];
+    goodsList = goodsList.filter(v => {
+      return v.checked
+    })
+    let totalPrice = 0;
+    let totalNumber = 0;
+    goodsList.forEach(v => {
+      totalPrice += v.goods_price * v.goods_number
+      totalNumber += v.goods_number
+    });
+    this.setData({ goodsList,totalPrice,totalNumber })
   },
+  goPay() {
+    let token = wx.getStorageSync('token')
+    if(token) {
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    } else {
+      wx.navigateTo({
+        url: '/pages/auth/index'
+      });
+        
+    }
   }
 })

@@ -1,4 +1,5 @@
-// pages/auth/index.js
+import regeneratorRuntime from '../../lib/runtime/runtime';
+import { login, request } from '../../request/index'
 Page({
 
   /**
@@ -7,7 +8,28 @@ Page({
   data: {
 
   },
-
+  async handleUserInfo(e) {
+    try {
+      const {rawData,signature,iv,encryptedData} = e.detail
+      let res = await login()
+      const {code} = res
+      let tokenParams = {rawData,signature,iv,encryptedData,code}
+      request({url:"/users/wxlogin", method:"post", data:tokenParams}).then(res => {
+        console.log(res);
+        
+      }).catch(err => {
+        console.log(err);
+        
+      })
+      console.log(res2);
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+    
+      
+  }, 
   /**
    * 生命周期函数--监听页面加载
    */
